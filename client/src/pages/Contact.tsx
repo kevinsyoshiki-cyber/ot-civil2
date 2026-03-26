@@ -32,10 +32,31 @@ export default function Contact() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setError(false);
+  try {
+    const formData = new FormData();
+    formData.append("form-name", "contact");
+    formData.append("name", form.name);
+    formData.append("email", form.email);
+    formData.append("phone", form.phone);
+    formData.append("projectType", form.projectType);
+    formData.append("message", form.message);
+
+    const response = await fetch("/", {
+      method: "POST",
+      body: formData,
+    });
+    if (response.ok) {
+      setSubmitted(true);
+    } else {
+      setError(true);
+    }
+  } catch {
+    setError(true);
+  }
+};
 
   const fieldStyle = {
     borderColor: "oklch(0.88 0.005 60)",
