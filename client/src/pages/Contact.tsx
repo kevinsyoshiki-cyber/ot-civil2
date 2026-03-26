@@ -26,6 +26,7 @@ const trustPoints = [
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+   const [error, setError] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", projectType: "", message: "" });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -33,30 +34,33 @@ export default function Contact() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setError(false);
-  try {
-    const formData = new FormData();
-    formData.append("form-name", "contact");
-    formData.append("name", form.name);
-    formData.append("email", form.email);
-    formData.append("phone", form.phone);
-    formData.append("projectType", form.projectType);
-    formData.append("message", form.message);
+ e.preventDefault();
+    setError(false);
+     try {
+      const payload = new URLSearchParams({
+        "form-name": "contact",
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        projectType: form.projectType,
+        message: form.message,
+      });
 
-    const response = await fetch("/", {
-      method: "POST",
-      body: formData,
-    });
-    if (response.ok) {
-      setSubmitted(true);
-    } else {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: payload.toString(),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        setError(true);
+      }
+    } catch {
       setError(true);
     }
-  } catch {
-    setError(true);
-  }
-};
+ };
 
   const fieldStyle = {
     borderColor: "oklch(0.88 0.005 60)",
@@ -121,7 +125,8 @@ export default function Contact() {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit} className="space-y-5">
+              <input type="hidden" name="form-name" value="contact" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wide mb-2" style={{ color: MUTED, fontFamily: "'DM Sans', sans-serif" }}>
@@ -212,6 +217,11 @@ export default function Contact() {
               >
                 Send Message <ArrowRight size={15} />
               </button>
+               {error && (
+                <p className="text-sm" style={{ color: "oklch(0.55 0.22 25)", fontFamily: "'DM Sans', sans-serif" }}>
+                  Sorry, something went wrong sending your message. Please email us directly at info@otcivileng.com.
+                </p>
+              )}
             </form>
           )}
         </div>
