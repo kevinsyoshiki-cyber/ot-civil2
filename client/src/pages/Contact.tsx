@@ -32,36 +32,26 @@ export default function Contact() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setError(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
- e.preventDefault();
-    setError(false);
-     try {
-      const payload = new URLSearchParams({
-        "form-name": "contact",
-        name: form.name,
-        email: form.email,
-        phone: form.phone,
-        projectType: form.projectType,
-        message: form.message,
-      });
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
 
-      const response = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: payload.toString(),
-      });
-
-      if (response.ok) {
-        setSubmitted(true);
-      } else {
-        setError(true);
-      }
-    } catch {
+    if (response.ok) {
+      setSubmitted(true);
+    } else {
       setError(true);
     }
- };
-
+  } catch {
+    setError(true);
+  }
+};
   const fieldStyle = {
     borderColor: "oklch(0.88 0.005 60)",
     fontFamily: "'DM Sans', sans-serif",
@@ -125,8 +115,7 @@ export default function Contact() {
               </p>
             </div>
           ) : (
-            <form name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit} className="space-y-5">
-              <input type="hidden" name="form-name" value="contact" />
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wide mb-2" style={{ color: MUTED, fontFamily: "'DM Sans', sans-serif" }}>
