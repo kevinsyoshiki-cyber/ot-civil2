@@ -13,7 +13,7 @@ const MUTED = "oklch(0.55 0.01 50)";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663470081773/jDbSv5mR6LAKncvi4hBttC/v2-hero-cropped_aad2c0db.jpg";
 const PLANS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663470081773/jDbSv5mR6LAKncvi4hBttC/v2-plans-WwXoJA3XqcFzMu88zPk9HS.webp";
-const ADU_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663470081773/jDbSv5mR6LAKncvi4hBttC/v2-strengths-nFwFAvmivBhFUJDNzDQwMQ.webp";
+const ADU_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663470081773/jDbSv5mR6LAKncvi4hBttC/v2-strengths-home.jpg";
 
 const services = [
   { num: "01", title: "ADU Civil Engineering", desc: "Civil plans for ADU permits — grading, drainage, and utility connections.", anchor: "adu" },
