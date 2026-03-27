@@ -213,11 +213,7 @@ export default function Home() {
 
             {/* Image */}
             <div>
-              <img
-                src={ADU_IMG}
-                alt="Modern ADU in a California backyard"
-                className="w-full h-80 lg:h-[420px] object-cover rounded-sm"
-              />
+              <img src="/adu.jpg" />
             </div>
           </div>
         </div>
