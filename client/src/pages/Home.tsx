@@ -213,7 +213,7 @@ export default function Home() {
 
             {/* Image */}
             <div>
-              <img src="/adu.jpg" />
+              <img src="/__manus__/adu.jpg" />
             </div>
           </div>
         </div>
