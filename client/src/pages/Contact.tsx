@@ -96,8 +96,8 @@ export default function Contact() {
             </div>
           ) : (
             <form action="https://formsubmit.co/info@otcivileng.com" method="POST" className="space-y-5">
-              <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_next" value="https://otcivileng.com">
+              <input type="hidden" name="_captcha" value="false" />
+<input type="hidden" name="_next" value="https://otcivileng.com" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wide mb-2" style={{ color: MUTED, fontFamily: "'DM Sans', sans-serif" }}>
