@@ -213,7 +213,7 @@ export default function Home() {
 
             {/* Image */}
             <div>
-              <img src="/__manus__/adu.jpg" style="width:100%; height:auto;"/>
+              <img src="/__manus__/adu.jpg" style={{ width: "100%", height: "auto" }} />
             </div>
           </div>
         </div>
