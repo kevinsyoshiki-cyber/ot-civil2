@@ -32,26 +32,6 @@ export default function Contact() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setError(false);
-
-  try {
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-
-    if (response.ok) {
-      setSubmitted(true);
-    } else {
-      setError(true);
-    }
-  } catch {
-    setError(true);
-  }
-};
   const fieldStyle = {
     borderColor: "oklch(0.88 0.005 60)",
     fontFamily: "'DM Sans', sans-serif",
@@ -115,7 +95,9 @@ const handleSubmit = async (e: React.FormEvent) => {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form action="https://formsubmit.co/info@otcivileng.com" method="POST" className="space-y-5">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_next" value="https://otcivileng.com">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wide mb-2" style={{ color: MUTED, fontFamily: "'DM Sans', sans-serif" }}>
