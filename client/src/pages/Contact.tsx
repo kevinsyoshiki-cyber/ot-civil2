@@ -28,10 +28,56 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
    const [error, setError] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", projectType: "", message: "" });
-
+const [loading, setLoading] = useState(false);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+  const [loading, setLoading] = useState(false);
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  setLoading(true);
+  setError(false);
+
+  try {
+    const res = await fetch("https://formsubmit.co/ajax/info@otcivileng.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        projectType: form.projectType,
+        message: form.message,
+      }),
+    });
+
+    if (res.ok) {
+      setSubmitted(true);
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        projectType: "",
+        message: "",
+      });
+      setTimeout(() => {
+    setSubmitted(false);
+  }, 5000);
+}
+    } else {
+      setError(true);
+    }
+  } catch (err) {
+    setError(true);
+  } finally {
+    setLoading(false);
+  }
+};
   const fieldStyle = {
     borderColor: "oklch(0.88 0.005 60)",
     fontFamily: "'DM Sans', sans-serif",
@@ -95,9 +141,7 @@ export default function Contact() {
               </p>
             </div>
           ) : (
-            <form action="https://formsubmit.co/info@otcivileng.com" method="POST" className="space-y-5">
-              <input type="hidden" name="_captcha" value="false" />
-<input type="hidden" name="_next" value="https://otcivileng.com" />
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wide mb-2" style={{ color: MUTED, fontFamily: "'DM Sans', sans-serif" }}>
@@ -182,12 +226,13 @@ export default function Contact() {
               </div>
 
               <button
-                type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-medium rounded-sm transition-opacity hover:opacity-85"
-                style={{ backgroundColor: TERRA, color: "white", fontFamily: "'DM Sans', sans-serif" }}
-              >
-                Send Message <ArrowRight size={15} />
-              </button>
+  type="submit"
+  disabled={loading}
+  className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-medium rounded-sm transition-opacity hover:opacity-85 disabled:opacity-60"
+  style={{ backgroundColor: TERRA, color: "white", fontFamily: "'DM Sans', sans-serif" }}
+>
+  {loading ? "Sending..." : "Send Message"} <ArrowRight size={15} />
+</button>
                {error && (
                 <p className="text-sm" style={{ color: "oklch(0.55 0.22 25)", fontFamily: "'DM Sans', sans-serif" }}>
                   Sorry, something went wrong sending your message. Please email us directly at info@otcivileng.com.
