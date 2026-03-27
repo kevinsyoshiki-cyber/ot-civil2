@@ -32,8 +32,6 @@ const [loading, setLoading] = useState(false);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const [loading, setLoading] = useState(false);
-
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
@@ -65,13 +63,15 @@ const handleSubmit = async (e: React.FormEvent) => {
         projectType: "",
         message: "",
       });
+
       setTimeout(() => {
-    setSubmitted(false);
-  }, 5000);
-}
+        setSubmitted(false);
+      }, 5000);
+
     } else {
       setError(true);
     }
+
   } catch (err) {
     setError(true);
   } finally {
