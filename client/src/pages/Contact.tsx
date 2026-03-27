@@ -88,7 +88,7 @@ export default function Contact() {
             Tell us about your project and we'll get back to you within 1 business day.
           </p>
         </div>
-@@ -73,53 +104,58 @@ export default function Contact() {
+{
         </div>
       </section>
 
@@ -147,7 +147,7 @@ export default function Contact() {
                     name="email"
                     required
                     value={form.email}
-@@ -161,56 +197,57 @@ export default function Contact() {
+ {
                     {projectTypes.map((pt) => (
                       <option key={pt.value} value={pt.value}>{pt.label}</option>
                     ))}
