@@ -16,7 +16,7 @@ const services = [
   {
     id: "adu",
     num: "01",
-    title: "ADU Civil Engineering",
+    title: "ADU Civil Plans & Engineering",
     desc: "We provide civil engineering plans to support ADU permit applications, including grading, drainage, and utility connections.",
     items: ["Site grading plans", "Drainage design", "Utility connections (water, sewer, storm)", "Coordination with city requirements"],
   },
