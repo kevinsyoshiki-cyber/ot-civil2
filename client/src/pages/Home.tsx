@@ -16,7 +16,7 @@ const PLANS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663470081773/jDbS
 const ADU_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663470081773/jDbSv5mR6LAKncvi4hBttC/v2-strengths-home.jpg";
 
 const services = [
-  { num: "01", title: "ADU Civil Engineering", desc: "Civil plans for ADU permits — grading, drainage, and utility connections.", anchor: "adu" },
+  { num: "01", title: "ADU Civil Plans & Engineering", desc: "Civil plans for ADU permits — grading, drainage, and utility connections.", anchor: "adu" },
   { num: "02", title: "Grading & Drainage", desc: "Site grading plans, drainage flow, and stormwater management.", anchor: "grading" },
   { num: "03", title: "Utility Plans", desc: "Water, sewer, and storm drain connections coordinated with local agencies.", anchor: "utility" },
   { num: "04", title: "SB9 Lot Splits", desc: "Civil support for small subdivision and lot split projects.", anchor: "sb9" },
