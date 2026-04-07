@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://otcivileng.com/sitemap.xml
