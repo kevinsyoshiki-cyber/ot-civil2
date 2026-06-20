@@ -14,7 +14,7 @@ import Home from "./pages/Home";
 import Services from "./pages/Services";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-
+import ScrollToHash from "@/components/scrolltohash";
 function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
@@ -27,14 +27,17 @@ function Layout({ children }: { children: React.ReactNode }) {
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={() => <Layout><Home /></Layout>} />
-      <Route path="/services" component={() => <Layout><Services /></Layout>} />
-      <Route path="/about" component={() => <Layout><About /></Layout>} />
-      <Route path="/contact" component={() => <Layout><Contact /></Layout>} />
-      <Route path="/404" component={NotFound} />
-      <Route component={NotFound} />
-    </Switch>
+    <>
+      <ScrollToHash />
+      <Switch>
+        <Route path="/" component={() => <Layout><Home /></Layout>} />
+        <Route path="/services" component={() => <Layout><Services /></Layout>} />
+        <Route path="/about" component={() => <Layout><About /></Layout>} />
+        <Route path="/contact" component={() => <Layout><Contact /></Layout>} />
+        <Route path="/404" component={NotFound} />
+        <Route component={NotFound} />
+      </Switch>
+    </>
   );
 }
 
